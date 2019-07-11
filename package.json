@@ -1,16 +1,37 @@
 {
-  "name": "svg-editor",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "start": "node ./bin/www"
+  "name": "test",
+  "description": "",
+  "version": "0.0.1",
+  "author": "",
+  "ava": {
+    "verbose": "true"
   },
+  "bugs": "https://github.com//test/issues",
   "dependencies": {
-    "cookie-parser": "~1.4.4",
-    "debug": "~2.6.9",
-    "express": "~4.16.1",
-    "http-errors": "~1.6.3",
-    "jade": "~1.11.0",
-    "morgan": "~1.9.1"
+    "reshape-standard": "^3.3.0",
+    "spike-css-standards": "^4.0.0",
+    "spike-js-standards": "^2.1.0",
+    "spike-optimize": "^0.1.2",
+    "spike-page-id": "^1.1.0",
+    "spike": "^2.3.0"
+  },
+  "devDependencies": {
+    "ava": "^0.19.1",
+    "rimraf": "^2.6.1",
+    "snazzy": "^7.0.0",
+    "standard": "^10.0.2"
+  },
+  "homepage": "https://github.com//test",
+  "main": "app.js",
+  "private": true,
+  "repository": "https://github.com//test",
+  "scripts": {
+    "lint": "standard | snazzy",
+    "precommit": "npm run lint -s",
+    "pretest": "npm run lint -s",
+    "test": "NODE_ENV=test ava",
+    "start": "spike watch",
+    "build": "spike compile",
+    "prod": "NODE_ENV=production spike compile -e production"
   }
 }
