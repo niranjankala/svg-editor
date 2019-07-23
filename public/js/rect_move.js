@@ -98,8 +98,7 @@
                         viewportRatio: paperConfig.viewboxRatio
 
                     }
-                   // debugger
-                    $('#drawingData').html( `Drawing Data: cx= ${(defaultData.cx/paperConfig.viewboxRatio).toFixed(2)-paperConfig.offset} ft, cy: ${ (paperConfig.height -paperConfig.offset)-(defaultData.cy /paperConfig.viewboxRatio).toFixed(2)} ft, width: ${defaultData.width-10} ft,  height: ${defaultData.height} ft, rotate: ${defaultData.rotate} deg, gap: ${defaultData.gap} 1 feet: ${defaultData.viewportRatio} px`)
+                    $('#drawingData').html( `Drawing Data: cx= ${((defaultData.cx/paperConfig.viewboxRatio)-paperConfig.offset).toFixed(2)} ft, cy: ${ ((paperConfig.height -paperConfig.offset)-(defaultData.cy /paperConfig.viewboxRatio)).toFixed(2)} ft, width: ${defaultData.width-10} ft,  height: ${defaultData.height} ft, rotate: ${defaultData.rotate} deg, gap: ${defaultData.gap/paperConfig.viewboxRatio} ft, 1 feet: ${defaultData.viewportRatio} px`)
                 });
                 ft.attrs.rotate=angle;
                 ft.apply();
