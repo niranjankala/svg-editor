@@ -1,0 +1,37 @@
+<script type="text/javascript" src="../public/js/raphael.min.js"></script>
+<script type="text/javascript" src="../public/js/raphael_free_transform.js"></script>
+<div id="holder" style="height: 100%;"></div>
+<script type="text/javascript">
+	var paper = Raphael(0, 0, 500, 500);
+	//var rect = paper.rect(200, 200, 100, 100).attr('fill', '#f00');
+	//var rect = paper.path('M10,10  L 30,10 L 30,20 L 10,20 z M10,30 L 30,30 L 30,40 L 10,40 z').attr('fill', 'red')
+	var x=10,y=10, w=150,h=25,g=7;	
+	var rect = paper.path(`M ${x},${y}  L ${x+w},${y} L ${x+w},${y+h} L ${x},${y+h} L ${x}, ${y} z` +
+						  `M ${x},${y+h+g}  L ${x+w},${y+h+g} L ${x+w},${2*h+y+g} L ${x},${2*h+y+g} L ${x},${y+h+g} z`)
+				    .attr({'fill': '#D3D3D3', "stroke": '#D3D3D3'})
+
+	// Add freeTransform
+	var ft = paper.freeTransform(rect);
+	//ft.artrs.center.x=ft.bbox.x
+	// Hide freeTransform handles
+    ft.hideHandles();
+
+	// Show hidden freeTransform handles
+	//ft.showHandles();
+
+	// Apply transformations programmatically
+	//ft.attrs.rotate = 45;
+	ft.customCorners= { size: 100, distance: 200}
+	ft.apply();
+
+	// Remove freeTransform completely
+	ft.unplug();
+
+	// Add freeTransform with options and callback
+	ft = paper.freeTransform(rect, { keepRatio: true }, function(ft, events) {
+		console.log(ft.attrs);
+	});
+
+	// Change options on the fly
+	ft.setOpts({ keepRatio: false });
+</script>

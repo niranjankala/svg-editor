@@ -57,24 +57,11 @@
 
 		ft = subject.freeTransform = {
 			// Keep track of transformations
-			// /*
-			// attrs: {
-			// 	x: bbox.x,
-			// 	y: bbox.y,
-			// 	size: { x: bbox.width, y: bbox.height },
-			// 	center: { x: bbox.x + bbox.width / 2, y: bbox.y + bbox.height / 2 },
-			// 	rotate: 0,
-			// 	scale: { x: 1, y: 1 },
-			// 	translate: { x: 0, y: 0 },
-			// 	ratio: 1
-			// },*/
-			
-			// MODIFIED BELOW
 			attrs: {
 				x: bbox.x,
 				y: bbox.y,
-				size: { x: bbox.width, y: 0 },
-				center: { x: bbox.x , y: bbox.y + bbox.height / 2 },				
+				size: { x: bbox.width, y: bbox.height },
+				center: { x: bbox.x + bbox.width / 2, y: bbox.y + bbox.height / 2 },
 				rotate: 0,
 				scale: { x: 1, y: 1 },
 				translate: { x: 0, y: 0 },
@@ -95,7 +82,7 @@
 				attrs: { fill: '#fff', stroke: '#000' },
 				boundary: { x: paper._left || 0, y: paper._top || 0, width: null, height: null },
 				customCorners: false, // { size: <number>, distance: <number>, corners: [ action: <string>, image: <string> ]	}
-				distance: 2, // MODIFIED
+				distance: 1.3,
 				drag: true,
 				draw: false,
 				keepRatio: false,
@@ -1063,7 +1050,6 @@
 		 * Apply limits
 		 */
 		function applyLimits(bbox) {
-			//debugger
 			var
 				x, y, deg,
 				dist = { x: 0, y: 0 },
@@ -1083,8 +1069,8 @@
 					if ( Math.abs(dist.y) <= ft.opts.snapDist.drag ) { snap.y = dist.y; }
 
 					// Repeat for bottom and right sides
-					//x += bbox.width  - snap.x;
-					//y += bbox.height - snap.y;
+					x += bbox.width  - snap.x;
+					y += bbox.height - snap.y;
 				});
 
 				ft.attrs.translate.x -= snap.x;
